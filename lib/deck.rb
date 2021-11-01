@@ -1,6 +1,11 @@
 class Deck
   def initialize
-    @cards = [Card.new(2, :spades)]
+    spades = Card.build(:spades)
+    hearts = Card.build(:hearts) 
+    diamonds = Card.build(:diamonds) 
+    clubs = Card.build(:clubs) 
+
+    @cards = [spades, hearts, diamonds, clubs].flatten.shuffle
   end
 
   def draw
