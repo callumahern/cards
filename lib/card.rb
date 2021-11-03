@@ -1,12 +1,11 @@
 class Card
-  attr_reader :value, :suit
-  
+  include Comparable
   def initialize(value, suit)
     @value = value
     @suit = suit
   end
 
-  def value
+  def human_value
     case @value
     when 1
       return :ace
@@ -21,7 +20,19 @@ class Card
     end
   end
 
+  def to_s
+    "the #{human_value} of #{@suit}"
+  end
+
+  def <=>(other)
+    value <=> other.value
+  end
+
   def self.build(suit)
     (1..13).map { |value| Card.new(value, suit) }
   end
+
+  protected
+
+  attr_reader :value
 end

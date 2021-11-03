@@ -1,11 +1,10 @@
-class Deck
-  def initialize
-    spades = Card.build(:spades)
-    hearts = Card.build(:hearts) 
-    diamonds = Card.build(:diamonds) 
-    clubs = Card.build(:clubs) 
+# A collection of cards
 
-    @cards = [spades, hearts, diamonds, clubs].flatten.shuffle
+class Deck
+  SUITS = [:spades, :hearts, :diamonds, :clubs]
+
+  def initialize
+    @cards = SUITS.map {|suit| Card.build(suit) }.flatten.shuffle
   end
 
   def draw
